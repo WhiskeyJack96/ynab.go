@@ -40,10 +40,9 @@ type ClientServicer interface {
 }
 
 // NewClient facilitates the creation of a new client instance
-func NewClient(accessToken string) ClientServicer {
+func NewClient(cl *http.Client) ClientServicer {
 	c := &client{
-		accessToken: accessToken,
-		client:      http.DefaultClient,
+		client:      cl,
 	}
 	c.user = user.NewService(c)
 	c.budget = budget.NewService(c)
@@ -143,7 +142,7 @@ func (c *client) do(method, url string, responseModel interface{}, requestBody [
 	}
 
 	req.Header.Set("Accept", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.accessToken))
+	//req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.accessToken))
 	if method == http.MethodPost || method == http.MethodPut || method == http.MethodPatch {
 		req.Header.Set("Content-Type", "application/json")
 	}
