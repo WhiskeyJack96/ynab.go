@@ -291,8 +291,9 @@ func (s *Service) GetScheduledTransaction(budgetID, scheduledTransactionID strin
 
 // Filter represents the optional filter while fetching transactions
 type Filter struct {
-	Since *api.Date
-	Type  *Status
+	Since                 *api.Date
+	Type                  *Status
+	LastKnowledgeOfServer uint64
 }
 
 // ToQuery returns the filters as a HTTP query string
@@ -304,6 +305,9 @@ func (f *Filter) ToQuery() string {
 	}
 	if f.Type != nil {
 		pairs = append(pairs, fmt.Sprintf("type=%s", string(*f.Type)))
+	}
+	if f.LastKnowledgeOfServer != 0 {
+		pairs = append(pairs, fmt.Sprintf("last_knowledge_of_server=%d", f.LastKnowledgeOfServer))
 	}
 	return strings.Join(pairs, "&")
 }
