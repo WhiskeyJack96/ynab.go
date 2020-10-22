@@ -29,6 +29,7 @@ func (s *Service) GetTransactions(budgetID string, f *Filter) ([]*Transaction, e
 	resModel := struct {
 		Data struct {
 			Transactions []*Transaction `json:"transactions"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -50,6 +51,7 @@ func (s *Service) GetTransaction(budgetID, transactionID string) (*Transaction, 
 	resModel := struct {
 		Data struct {
 			Transaction *Transaction `json:"transaction"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -116,6 +118,7 @@ func (s *Service) BulkCreateTransactions(budgetID string,
 	resModel := struct {
 		Data struct {
 			Bulk *Bulk `json:"bulk"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -145,6 +148,7 @@ func (s *Service) UpdateTransaction(budgetID, transactionID string,
 	resModel := struct {
 		Data struct {
 			Transaction *Transaction `json:"transaction"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -192,6 +196,7 @@ func (s *Service) GetTransactionsByAccount(budgetID, accountID string,
 	resModel := struct {
 		Data struct {
 			Transactions []*Transaction `json:"transactions"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -216,6 +221,7 @@ func (s *Service) GetTransactionsByCategory(budgetID, categoryID string,
 	resModel := struct {
 		Data struct {
 			Transactions []*Hybrid `json:"transactions"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -240,6 +246,7 @@ func (s *Service) GetTransactionsByPayee(budgetID, payeeID string,
 	resModel := struct {
 		Data struct {
 			Transactions []*Hybrid `json:"transactions"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -262,6 +269,7 @@ func (s *Service) GetScheduledTransactions(budgetID string) ([]*Scheduled, error
 	resModel := struct {
 		Data struct {
 			ScheduledTransactions []*Scheduled `json:"scheduled_transactions"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
@@ -279,6 +287,7 @@ func (s *Service) GetScheduledTransaction(budgetID, scheduledTransactionID strin
 	resModel := struct {
 		Data struct {
 			ScheduledTransactions *Scheduled `json:"scheduled_transaction"`
+			LastKnowledgeOfServer uint64 `json:"server_knowledge"`
 		} `json:"data"`
 	}{}
 
